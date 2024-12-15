@@ -25,8 +25,8 @@ namespace pirates
         DataTable dt;
 
 
-        int id;
         Boolean ifview;
+
         public form()
         {
             InitializeComponent();
@@ -39,10 +39,9 @@ namespace pirates
             initializecbo();
             DisableTextBox();
             cboPiratesSearch.SelectedIndex = -1;
-            cboPiratesGroup.SelectedIndex = -1;
+            //cbopiratesgroup.selectedindex = -1;
             btnSave.Enabled = false;
             BtnCancel.Enabled = false;
-           
         }
          
         
@@ -74,11 +73,11 @@ namespace pirates
             txtBounty.Clear();
             cboPiratesGroup.SelectedIndex = -1;
         }
-
+        //View DataGrid
         public void InitializeData()
         {
             string query = "SELECT id, piratename AS ALIAS, givenname AS NAME, age AS AGE, pirategroup AS [PIRATE GROUP], bounty AS [BOUNTY (BELLY)] FROM pirates";
-            
+
             using (conn = new OleDbConnection(ConnStr))
             {
                 conn.Open();
@@ -96,7 +95,7 @@ namespace pirates
         
             }
         }
-
+        //Combo box
         public void initializecbo()
         {
             string query = "select distinct pirategroup from pirates";
@@ -131,19 +130,19 @@ namespace pirates
             btnNewRecord.Enabled = false;
             btnSave.Enabled = true;
             BtnCancel.Enabled = true;
-
-            MessageBox.Show(id.ToString());
             ifview = true;
+            //MessageBox.Show(id.ToString());
+            //cboPiratesGroup.Text = grdview.SelectedCells[4].Value.ToString();
 
         }
 
         private void grdview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            id = Convert.ToInt32(grdview.SelectedCells[0].Value.ToString());
+            Convert.ToInt32(grdview.SelectedCells[0].Value.ToString());
             txtAlias.Text = grdview.SelectedCells[1].Value.ToString();
             txtName.Text = grdview.SelectedCells[2].Value.ToString();
             txtAge.Text = grdview.SelectedCells[3].Value.ToString();
-            cboPiratesGroup.Text = grdview.SelectedCells[4].ToString();
+            cboPiratesGroup.Text = grdview.SelectedCells[4].Value.ToString();  
             txtBounty.Text = grdview.SelectedCells[5].Value.ToString();
 
         }
@@ -172,12 +171,6 @@ namespace pirates
 
                         grdview.DataSource = dt;
                     }
-                    
-
-                    //if (res > 0)
-                    //{
-                    //    MessageBox.Show("Successfully Added", "Add Data");
-                    //}
                     conn.Close();
                 }
             }
@@ -186,28 +179,26 @@ namespace pirates
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string query = "Delete FROM pirates WHERE id =@id";
-
-            using(conn =new OleDbConnection(ConnStr))
+            using (conn = new OleDbConnection(ConnStr))
             {
                 conn.Open();
-                
-                using(cmd = new OleDbCommand(query, conn))
+
+                using (cmd = new OleDbCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", grdview.SelectedCells[0].Value.ToString());
                     int res = cmd.ExecuteNonQuery();
                     conn.Close();
 
-                    if(res > 0)
+                    if (res > 0)
                     {
-                        MessageBox.Show("Deleted Data Successfully");
+                        MessageBox.Show("Record Deleted Successfully", "DELETE RECORD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     }
-                 
+
                 }
-                
-                
+                dt = new DataTable();
+                InitializeData();
             }
-            dt = new DataTable();
-            InitializeData();
         }
 
         private void btnNewRecord_Click(object sender, EventArgs e)
@@ -220,9 +211,6 @@ namespace pirates
             grdview.ClearSelection();
 
             ifview = false;
-
-            MessageBox.Show(id.ToString());
-
 
         }
 
@@ -246,7 +234,7 @@ namespace pirates
 
                     if (res > 0)
                     {
-                        MessageBox.Show("Data Successfully Added");
+                        MessageBox.Show("Data Successfully Added","NEW RECORD", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                 }
@@ -277,7 +265,7 @@ namespace pirates
 
                     if (res > 0)
                     {
-                        MessageBox.Show("Data Successfully Upadated");
+                        MessageBox.Show("Data Successfully Updated","UPDATE RECORD",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                 }
             }
@@ -288,7 +276,7 @@ namespace pirates
          
             if(Convert.ToInt32(txtBounty.Text) <0)
             {
-                MessageBox.Show("Bounty is invalid", "INVALID INPUT",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Bounty should be greater than 0", "INVALID INPUT",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
 

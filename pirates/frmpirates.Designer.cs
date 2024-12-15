@@ -48,6 +48,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.grdview)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -56,20 +57,20 @@
             // 
             this.grdview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdview.Location = new System.Drawing.Point(17, 58);
+            this.grdview.Location = new System.Drawing.Point(17, 44);
             this.grdview.Margin = new System.Windows.Forms.Padding(2);
             this.grdview.Name = "grdview";
             this.grdview.ReadOnly = true;
             this.grdview.RowHeadersWidth = 51;
             this.grdview.RowTemplate.Height = 24;
             this.grdview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdview.Size = new System.Drawing.Size(439, 288);
+            this.grdview.Size = new System.Drawing.Size(439, 302);
             this.grdview.TabIndex = 0;
             this.grdview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdview_CellClick);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(26, 28);
+            this.txtSearch.Location = new System.Drawing.Point(26, 17);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(116, 20);
@@ -78,7 +79,7 @@
             // cboPiratesSearch
             // 
             this.cboPiratesSearch.FormattingEnabled = true;
-            this.cboPiratesSearch.Location = new System.Drawing.Point(160, 28);
+            this.cboPiratesSearch.Location = new System.Drawing.Point(160, 17);
             this.cboPiratesSearch.Margin = new System.Windows.Forms.Padding(2);
             this.cboPiratesSearch.Name = "cboPiratesSearch";
             this.cboPiratesSearch.Size = new System.Drawing.Size(134, 21);
@@ -235,7 +236,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(305, 26);
+            this.btnSearch.Location = new System.Drawing.Point(305, 15);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 25);
@@ -265,6 +266,10 @@
             this.btnDelete.Text = "Delete Pirate Record";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
             // 
             // form
             // 
@@ -313,6 +318,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtAlias;
         private System.Windows.Forms.ComboBox cboPiratesGroup;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 
