@@ -78,6 +78,7 @@
             // 
             // cboPiratesSearch
             // 
+            this.cboPiratesSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPiratesSearch.FormattingEnabled = true;
             this.cboPiratesSearch.Location = new System.Drawing.Point(160, 17);
             this.cboPiratesSearch.Margin = new System.Windows.Forms.Padding(2);
